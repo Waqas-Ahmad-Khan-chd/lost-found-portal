@@ -3,7 +3,7 @@ const router = express.Router();
 const fs = require('fs').promises;
 const path = require('path');
 
-const DATA_FILE = path.join(__dirname, '..', 'data', 'items.json');
+const DATA_FILE = path.join(process.cwd(), 'data', 'items.json');
 
 // Helper functions
 async function readData() {
