@@ -1,13 +1,10 @@
-// Details page JavaScript
-const API_URL = 'http://localhost:3000/api/items';
+const API_URL = '/api/items';
 
-// Get item ID from URL
 function getItemId() {
     const params = new URLSearchParams(window.location.search);
     return params.get('id');
 }
 
-// Load item details
 async function loadItemDetails() {
     const id = getItemId();
     const container = document.getElementById('detailsContainer');
@@ -27,7 +24,6 @@ async function loadItemDetails() {
         }
         
         const item = await response.json();
-        console.log('Item loaded:', item); // Debug log
         
         container.innerHTML = `
             <div class="detail-item ${item.type.toLowerCase()}">
@@ -71,7 +67,6 @@ async function loadItemDetails() {
     }
 }
 
-// Delete item
 async function deleteItem(id) {
     if (!confirm('Are you sure you want to delete this item?')) return;
     
@@ -85,5 +80,4 @@ async function deleteItem(id) {
     }
 }
 
-// Load page when ready
 document.addEventListener('DOMContentLoaded', loadItemDetails);

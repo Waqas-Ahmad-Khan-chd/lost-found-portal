@@ -1,21 +1,6 @@
-// Items page JavaScript
-const API_URL = 'http://localhost:3000/api/items';
+const API_URL = '/api/items';
 let allItems = [];
 
-// Function to remove duplicate items
-function removeDuplicates(items) {
-    const seen = new Set();
-    return items.filter(item => {
-        const key = `${item.name}-${item.location}-${item.date}`;
-        if (seen.has(key)) {
-            return false;
-        }
-        seen.add(key);
-        return true;
-    });
-}
-
-// Load items
 async function loadItems() {
     const container = document.getElementById('itemsContainer');
     container.innerHTML = '<div class="loading">Loading items...</div>';
@@ -24,7 +9,6 @@ async function loadItems() {
         const response = await fetch(API_URL);
         if (!response.ok) throw new Error('Failed to fetch items');
         allItems = await response.json();
-        allItems = removeDuplicates(allItems); // Remove duplicates
         filterAndDisplayItems();
     } catch (error) {
         console.error('Error loading items:', error);
@@ -32,7 +16,6 @@ async function loadItems() {
     }
 }
 
-// Filter and display items
 function filterAndDisplayItems() {
     const searchTerm = document.getElementById('searchInput').value.toLowerCase();
     const typeFilter = document.getElementById('typeFilter').value;
@@ -49,7 +32,6 @@ function filterAndDisplayItems() {
         return matchesSearch && matchesType && matchesCategory && matchesStatus;
     });
     
-    // Sort
     if (sortFilter === 'name') {
         filtered.sort((a, b) => a.name.localeCompare(b.name));
     } else if (sortFilter === 'date') {
@@ -59,7 +41,6 @@ function filterAndDisplayItems() {
     displayItems(filtered);
 }
 
-// Display items
 function displayItems(items) {
     const container = document.getElementById('itemsContainer');
     
@@ -85,7 +66,6 @@ function displayItems(items) {
     `).join('');
 }
 
-// Delete item
 async function deleteItem(id) {
     if (!confirm('Are you sure you want to delete this item?')) return;
     
@@ -99,7 +79,6 @@ async function deleteItem(id) {
     }
 }
 
-// Event listeners
 document.addEventListener('DOMContentLoaded', () => {
     loadItems();
     

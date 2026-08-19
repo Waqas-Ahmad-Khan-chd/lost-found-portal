@@ -1,7 +1,5 @@
-// Home page JavaScript
-const API_URL = 'http://localhost:3000/api/items';
+const API_URL = '/api/items';
 
-// Load stats and recent items
 async function loadHomePage() {
     try {
         const response = await fetch(API_URL);
@@ -16,7 +14,6 @@ async function loadHomePage() {
     }
 }
 
-// Update statistics
 function updateStats(items) {
     const total = items.length;
     const lost = items.filter(i => i.type === 'Lost').length;
@@ -29,7 +26,6 @@ function updateStats(items) {
     document.getElementById('returnedItems').textContent = returned;
 }
 
-// Display recent items (last 4)
 function displayRecentItems(items) {
     const container = document.getElementById('recentItems');
     const recent = items.slice(-4).reverse();
@@ -42,7 +38,6 @@ function displayRecentItems(items) {
     container.innerHTML = recent.map(item => createItemCard(item)).join('');
 }
 
-// Create item card HTML
 function createItemCard(item) {
     return `
         <div class="item-card ${item.type.toLowerCase()}">
@@ -59,5 +54,4 @@ function createItemCard(item) {
     `;
 }
 
-// Load page on load
 document.addEventListener('DOMContentLoaded', loadHomePage);

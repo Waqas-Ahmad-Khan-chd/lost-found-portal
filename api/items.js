@@ -3,26 +3,19 @@ const router = express.Router();
 const fs = require('fs').promises;
 const path = require('path');
 
-// Use absolute path for Vercel
-const DATA_FILE = path.join(process.cwd(), 'data', 'items.json');
+const DATA_FILE = path.join(__dirname, '..', 'data', 'items.json');
 
-// Helper functions
 async function readData() {
     try {
         const data = await fs.readFile(DATA_FILE, 'utf8');
         return JSON.parse(data);
     } catch (error) {
-        console.error('Error reading data:', error);
         return [];
     }
 }
 
 async function writeData(data) {
-    try {
-        await fs.writeFile(DATA_FILE, JSON.stringify(data, null, 2));
-    } catch (error) {
-        console.error('Error writing data:', error);
-    }
+    await fs.writeFile(DATA_FILE, JSON.stringify(data, null, 2));
 }
 
 // GET all items
