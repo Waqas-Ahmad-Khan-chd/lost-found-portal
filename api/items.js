@@ -5,7 +5,7 @@ const path = require('path');
 
 const DATA_FILE = path.join(__dirname, '..', 'data', 'items.json');
 
-// Helper function to read data
+// Helper functions
 async function readData() {
     try {
         const data = await fs.readFile(DATA_FILE, 'utf8');
@@ -15,12 +15,11 @@ async function readData() {
     }
 }
 
-// Helper function to write data
 async function writeData(data) {
     await fs.writeFile(DATA_FILE, JSON.stringify(data, null, 2));
 }
 
-// GET /api/items - Get all items
+// GET all items
 router.get('/', async (req, res) => {
     try {
         const items = await readData();
@@ -30,7 +29,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// GET /api/items/:id - Get single item
+// GET single item
 router.get('/:id', async (req, res) => {
     try {
         const items = await readData();
@@ -44,7 +43,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// POST /api/items - Create new item
+// POST create item
 router.post('/', async (req, res) => {
     try {
         const items = await readData();
@@ -56,12 +55,11 @@ router.post('/', async (req, res) => {
         await writeData(items);
         res.status(201).json(newItem);
     } catch (error) {
-        console.error('Error creating item:', error);
         res.status(500).json({ error: 'Failed to create item' });
     }
 });
 
-// PUT /api/items/:id - Update item
+// PUT update item
 router.put('/:id', async (req, res) => {
     try {
         const items = await readData();
@@ -77,7 +75,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// DELETE /api/items/:id - Delete item
+// DELETE item
 router.delete('/:id', async (req, res) => {
     try {
         const items = await readData();
