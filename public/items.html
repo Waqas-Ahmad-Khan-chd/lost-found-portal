@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost & Found - Items</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">🔍 Lost & Found</div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/items.html" class="active">Items</a></li>
+            <li><a href="/form.html">Add Item</a></li>
+            <li><a href="/about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <h1>All Items</h1>
+            
+            <div class="filters">
+                <input type="text" id="searchInput" placeholder="Search by name or description...">
+                <select id="typeFilter">
+                    <option value="">All Types</option>
+                    <option value="Lost">Lost</option>
+                    <option value="Found">Found</option>
+                </select>
+                <select id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="Wallet">Wallet</option>
+                    <option value="Laptop">Laptop</option>
+                    <option value="Bottle">Bottle</option>
+                    <option value="ID Card">ID Card</option>
+                    <option value="Bag">Bag</option>
+                    <option value="Keys">Keys</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Books">Books</option>
+                </select>
+                <select id="statusFilter">
+                    <option value="">All Status</option>
+                    <option value="Searching">Searching</option>
+                    <option value="Found">Found</option>
+                    <option value="Returned">Returned</option>
+                    <option value="Claim Pending">Claim Pending</option>
+                    <option value="Reported">Reported</option>
+                </select>
+                <select id="sortFilter">
+                    <option value="name">Sort by Name</option>
+                    <option value="date">Sort by Date</option>
+                </select>
+            </div>
+
+            <div class="items-grid" id="itemsContainer">
+                <div class="loading">Loading items...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/items.js"></script>
+</body>
+</html>
