@@ -5,7 +5,7 @@
   ],
   "functions": {
     "api/index.js": {
-      "excludeFiles": ["data/items.json"]
+      "excludeFiles": "data/items.json"
     }
   }
 }
